@@ -7,7 +7,11 @@
 import operator
 import re
 import math
-from sets import Set
+try:
+    set
+except NameError:
+    from sets import Set as set
+
 
 class BayesData(dict):
 
@@ -244,7 +248,7 @@ class Bayes(object):
         return False
 
     def guess(self, msg):
-        tokens = Set(self.getTokens(msg))
+        tokens = set(self.getTokens(msg))
         pools = self.poolProbs()
 
         res = {}
